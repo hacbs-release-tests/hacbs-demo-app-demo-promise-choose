@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: applicationservice
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: applicationservice
+    app.kubernetes.io/part-of: m5-application
+  name: applicationservice
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: applicationservice
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: applicationservice
+    spec:
+      containers:
+      - image: quay.io/redhat-appstudio/user-workload:demo-applicationservice
+        imagePullPolicy: Always
+        name: container-image
+        resources: {}
+status: {}
